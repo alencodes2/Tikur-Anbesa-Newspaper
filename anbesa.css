@@ -91,7 +91,7 @@ button{
                     font-family: Arial, Helvetica, sans-serif;
 
 }
-.Totalr{
+#Totalr{
         display: block;
         background-color: rgb(37, 37, 37);
         text-wrap-mode: wrap;
