@@ -5,39 +5,12 @@ async function fetchData(){
         const response = await fetch(`https://newsdata.io/api/1/latest?apikey=${API_KEY}&q=${QUERY}`);
         const data = await response.json();
         let anbesahtml = "";
-        document.getElementById("Totalr").innerHTML = data.totalResults;
-        data.results.forEach(article => {
-anbesahtml += `<div class="video">
-<p><strong><em>ID : ${article.source_priority * 35 + 6}</em></strong></p>
-
-<div class="newspicture">
-<img src="${article.image_url}" alt="news image">
-</div>
-
-<div class="source">
-<img src="${article.source_icon}" alt="${article.source_name} Icon" class="sicon">
-<p class="sname">${article.source_name}</p>
-</div>
-
-<div class="creator">Creator : ${article.creator || "Unknown"}</div>
-
-<div class="title">
-<h2><a href="${article.link}">${article.title}</a></h2>
-</div>
-
-<div class="description">${article.description}</div>
-
-<div class="time">
-<p class="pub">Published At : ${article.pubDate}</p>
-<p class="fetch">Fetched At : ${article.fetched_at}</p>
-</div>
-
-</div>`;
-});
-
+        document.getElementById("Totalr").innerHTML = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 640'><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d='M64 480L64 184C64 170.7 74.7 160 88 160C101.3 160 112 170.7 112 184L112 472C112 485.3 122.7 496 136 496C149.3 496 160 485.3 160 472L160 160C160 124.7 188.7 96 224 96L512 96C547.3 96 576 124.7 576 160L576 480C576 515.3 547.3 544 512 544L128 544C92.7 544 64 515.3 64 480zM224 192L224 256C224 273.7 238.3 288 256 288L320 288C337.7 288 352 273.7 352 256L352 192C352 174.3 337.7 160 320 160L256 160C238.3 160 224 174.3 224 192zM248 432C234.7 432 224 442.7 224 456C224 469.3 234.7 480 248 480L488 480C501.3 480 512 469.3 512 456C512 442.7 501.3 432 488 432L248 432zM224 360C224 373.3 234.7 384 248 384L488 384C501.3 384 512 373.3 512 360C512 346.7 501.3 336 488 336L248 336C234.7 336 224 346.7 224 360zM424 240C410.7 240 400 250.7 400 264C400 277.3 410.7 288 424 288L488 288C501.3 288 512 277.3 512 264C512 250.7 501.3 240 488 240L424 240z'/></svg> Total Newspapers " + data.totalResults;
+        data.results.forEach(article => {anbesahtml += `<div class="card"><div class="source"><img src="${article.source_icon}" class="sicon"><span>${article.source_name}</span></div><img class="newsimg" src="${article.image_url}" alt="news image"><div class="cardcontent"><h3 class="title"><a href="${article.link}" target="_blank">${article.title}</a></h3><p class="description">${article.description || "No description available"}</p><p class="time">Published: ${article.pubDate}</p></div></div>`;});
 document.getElementById("info").innerHTML = anbesahtml;
     }
     catch{
         document.getElementById("info").innerHTML = "<center><p class='scale-up-bottom error'><strong>ERROR 404:</strong></p><p class='scale-up-bottom errorwhy'><strong><em>Error, failed to load resource please try again!</em></strong><p><p class='sscale-up-bottom'><em>Maybe be no internet connection or server error.</em></p></center>" ;
+        document.getElementById("Totalr").innerHTML = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 640'><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d='M64 480L64 184C64 170.7 74.7 160 88 160C101.3 160 112 170.7 112 184L112 472C112 485.3 122.7 496 136 496C149.3 496 160 485.3 160 472L160 160C160 124.7 188.7 96 224 96L512 96C547.3 96 576 124.7 576 160L576 480C576 515.3 547.3 544 512 544L128 544C92.7 544 64 515.3 64 480zM224 192L224 256C224 273.7 238.3 288 256 288L320 288C337.7 288 352 273.7 352 256L352 192C352 174.3 337.7 160 320 160L256 160C238.3 160 224 174.3 224 192zM248 432C234.7 432 224 442.7 224 456C224 469.3 234.7 480 248 480L488 480C501.3 480 512 469.3 512 456C512 442.7 501.3 432 488 432L248 432zM224 360C224 373.3 234.7 384 248 384L488 384C501.3 384 512 373.3 512 360C512 346.7 501.3 336 488 336L248 336C234.7 336 224 346.7 224 360zM424 240C410.7 240 400 250.7 400 264C400 277.3 410.7 288 424 288L488 288C501.3 288 512 277.3 512 264C512 250.7 501.3 240 488 240L424 240z'/></svg> Total Newspapers " + "0";
     }
 }
